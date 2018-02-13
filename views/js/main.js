@@ -386,15 +386,13 @@ var resizePizzas = function(size) {
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.getElementById("#pizzaSize").innerHTML="Small";
+        document.querySelector("#pizzaSize").innerHTML = "Small";
         return;
       case "2":
-        //document.querySelector("#pizzaSize").innerHTML = "Medium";
-        document.getElementById("#pizzaSize").innerHTML="Medium";
+        document.querySelector("#pizzaSize").innerHTML = "Medium";
         return;
       case "3":
-       // document.querySelector("#pizzaSize").innerHTML = "Large";
-        document.getElementById("#pizzaSize").innerHTML="Large";
+        document.querySelector("#pizzaSize").innerHTML = "Large";
         return;
       default:
         console.log("bug in changeSliderLabel");
@@ -432,14 +430,7 @@ var resizePizzas = function(size) {
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
     var pizzaSize = document.getElementById("randomPizzaContainer");
-    pizzaSize.forEach(function(size){
-
-
-
-
-
-    });
-
+    
     for (var i = 0; i < pizzaSize.length; i++) {
       var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
       var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
