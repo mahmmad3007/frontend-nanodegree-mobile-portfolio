@@ -386,13 +386,15 @@ var resizePizzas = function(size) {
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.getElementById("pizzaSize").innerHTML="Small";
+        document.getElementById("#pizzaSize").innerHTML="Small";
         return;
       case "2":
-        document.getElementById("pizzaSize").innerHTML="Medium";
+        //document.querySelector("#pizzaSize").innerHTML = "Medium";
+        document.getElementById("#pizzaSize").innerHTML="Medium";
         return;
       case "3":
-        document.getElementById("pizzaSize").innerHTML="Large";
+       // document.querySelector("#pizzaSize").innerHTML = "Large";
+        document.getElementById("#pizzaSize").innerHTML="Large";
         return;
       default:
         console.log("bug in changeSliderLabel");
@@ -424,28 +426,35 @@ var resizePizzas = function(size) {
    // var newSize = sizeSwitcher(size);
    // var dx = (newSize - oldSize) * windowWidth;
 
-   // return dx;
+    return dx;
   }
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
     var pizzaSize = document.getElementById("randomPizzaContainer");
+    pizzaSize.forEach(function(size){
+
+
+
+
+
+    });
 
     for (var i = 0; i < pizzaSize.length; i++) {
-      var dx = determineDx(document.getElementById("randomPizzaContainer")[i], size);
-      var newwidth = (document.getElementById("randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.document.getElementById("randomPizzaContainer")[i].style.width = newwidth;
+      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
+      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
+      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
     }
   }
 
-  //changePizzaSizes(size);
+  changePizzaSizes(size);
 
   // User Timing API is awesome
   window.performance.mark("mark_end_resize");
   window.performance.measure("measure_pizza_resize", "mark_start_resize", "mark_end_resize");
   var timeToResize = window.performance.getEntriesByName("measure_pizza_resize");
   console.log("Time to resize pizzas: " + timeToResize[timeToResize.length-1].duration + "ms");
-
+};
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
@@ -483,8 +492,7 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.getElementById("mover");
-  //var items = document.querySelectorAll('.mover');
+  var items = document.querySelectorAll('.mover');
   for (var i = 0; i < items.length; i++) {
     // document.body.scrollTop is no longer supported in Chrome.
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
