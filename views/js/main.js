@@ -401,7 +401,8 @@ var resizePizzas = function(size) {
       default:
         console.log("bug in changeSliderLabel");
     }
-    var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
+    //var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
+    var randomPizzas = document.getElementsByClassName('randomPizzaContainer');
     for (var i = 0; i < randomPizzas.length ; i++) {
       randomPizzas[i].style.width = newwidth + "%";
   }
@@ -455,9 +456,9 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
  var items = document.querySelectorAll('.mover');
+ var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   for (var i = 0; i < items.length; i++) {
     // document.body.scrollTop is no longer supported in Chrome.
-    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     var phase = Math.sin((scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
@@ -470,15 +471,16 @@ function updatePositions() {
     var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
     logAverageFrame(timesToUpdatePosition);
   }
+  window.addEventListener('scroll', updatePositions);
 }
 
   var cols = 8;
   var s = 256;
   var rows = window.screen.height / s;
   var requiredPizza = rows * cols;
-  console.log(requiredPizza);
+  var elem ;
   for (var i = 0; i < requiredPizza; i++) {
-    var elem = document.createElement('img');
+    elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
